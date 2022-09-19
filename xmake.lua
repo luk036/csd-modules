@@ -1,7 +1,7 @@
 set_languages("c++20")
 
 add_rules("mode.debug", "mode.release", "mode.coverage")
-add_requires("apt::doctest-dev", {alias = "doctest"})
+add_requires("doctest", {alias = "doctest"})
 
 target("Csd")
     set_kind("static")
