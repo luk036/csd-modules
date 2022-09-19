@@ -80,29 +80,31 @@ auto to_csd(double num, const int places) -> string {
  * @param csd_str
  * @return double
  */
-// auto to_decimal(string_view csd_str) -> double {
-//     auto num = 0.0;
-//     auto loc = 0U;
-//     auto i = 0U;
-//     for (; i < csd_str.size(); ++i) {
-//         auto c = csd_str[i];
-//         if (c == '0') {
-//             num *= 2.0;
-//         } else if (c == '+') {
-//             num = num * 2.0 + 1.0;
-//         } else if (c == '-') {
-//             num = num * 2.0 - 1.0;
-//         } else if (c == '.') {
-//             loc = i + 1;
-//         } else {
-//             // ignore unknown characters such as '
-//         }
-//     }
-//     if (loc != 0) {
-//         num /= pow(2.0, double(csd_str.size() - loc));
-//     }
-//     return num;
-// }
+auto to_decimal(std::string_view csd_str) -> double {
+    auto num = 0.0;
+    auto loc = 0U;
+    auto i = 0U;
+    // for (; i < csd_str.size(); ++i) {
+    //     auto c = csd_str[i];
+    for (auto&& c : csd_str) {
+        if (c == '0') {
+            num *= 2.0;
+        } else if (c == '+') {
+            num = num * 2.0 + 1.0;
+        } else if (c == '-') {
+            num = num * 2.0 - 1.0;
+        } else if (c == '.') {
+            loc = i + 1;
+        } else {
+            // ignore unknown characters such as '
+        }
+        ++i;
+    }
+    if (loc != 0) {
+        num /= std::pow(2.0, double(csd_str.size() - loc));
+    }
+    return num;
+}
 
 /**
  * @brief Convert to CSD (Canonical Signed Digit) string representation

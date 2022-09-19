@@ -30,5 +30,6 @@ import csd;
 
 int main() {
     std::cout << csd::to_csd(28.5, 2) << std::endl;
+    std::cout << csd::to_decimal("+00-00.+0") << std::endl;
     return 0;
 }
